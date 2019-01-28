@@ -52,7 +52,7 @@ function personality_type($arr)
     ?>
 
 
-    <script>alert("<?php echo "Pour Personalaty type is : ". $personalaty_type; ?>")</script>
+    <script>alert("<?php echo "Your Personalaty type is : ". $personalaty_type; ?>")</script>
 
     <?php
 }
@@ -142,15 +142,18 @@ function j_p($arr)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check=true;
     for ($i = 0; $i < sizeof($question_array); $i++) {
-        $arr[$i]= $_POST["question" . $i];
-        if(!empty($arr[$i])){
-$check=false;
+        if(empty($_POST["question" . $i])) {
+            $check = false;
+
+
             ?>
             <script>alert("<?php echo "Answer All the questions "?>")</script>
 <?php
             break;
-        $arr[$i]= $_POST["question" . $i];
+
+
         }
+        $arr[$i]= $_POST["question" . $i];
     }
     if($check) {
         personality_type($arr);
